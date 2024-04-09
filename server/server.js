@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const passportSetup = require('./passport');
+const authRoute = require('./routes/auth')
 const app = express();
 
 app.use(
@@ -23,6 +25,8 @@ app.use(
         credentials:true,
     })
 )
+
+app.use('/auth',authRoute);
 
 const port = process.env.PORT || 8080;
 app.listen(port,()=>console.log(`listening on ${port}`))
